@@ -1,0 +1,30 @@
+<div class="login-status-header">
+
+  <p-toast position="top-right"></p-toast>
+
+  <div *ngIf="isLoggedIn()" class="login-status-user-info" style="color: white; font-weight: bold;">
+    Welcome Back
+  </div>
+
+  <button style="margin-left: 5px;" routerLink="/user" *ngIf="usreService.roleMatch(['USER_ROLE'])"
+    class="security-btn ml-1">{{getUserName()}} <i class="fa fa-user"></i></button>
+
+  <button style="margin-left: 5px;" routerLink="/admin" *ngIf="usreService.roleMatch(['ADMIN_ROLE'])"
+    class="security-btn ml-1">Admin <i class="fa fa-lock"></i></button>
+
+  <button *ngIf="!isLoggedIn()" style="margin-left: 5px;" routerLink="/login" class="security-btn">Login <i class="fa fa-sign-in"></i></button>
+  <button *ngIf="!isLoggedIn()" style="margin-left: 5px;" routerLink="/signup" class="security-btn">SignUp <i class="fa fa-sign-in"></i></button>
+
+  <button style="margin-left: 5px;" *ngIf="usreService.roleMatch(['ADMIN_ROLE'])" class="security-btn ml-1"
+    (click)="generateReport()">Report <i class="fa fa-download"></i></button>
+
+  <button *ngIf="isLoggedIn()" style="margin-left: 5px;" class="security-btn" (click)="logout()">Logout <i
+      class="fa fa-sign-out"></i></button>
+
+      <select class="security-btn ml-1" aria-label="Default select example"
+      (change)="changeLanguage($event)" style="margin-left: 5px;">
+        <option value="en">English</option>
+        <option value="ar">Arabic</option>
+      </select>
+
+</div>
